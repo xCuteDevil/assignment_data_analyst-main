@@ -47,3 +47,7 @@ Thumbs.db
 *.tmp
 tmp/
 *.bak
+
+# Generated HTML reports and interactive outputs
+*.html
+html/
