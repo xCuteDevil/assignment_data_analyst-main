@@ -86,3 +86,23 @@ deactivate
 ---
 
 **Shrnutí:** `python3 -m venv .venv` → aktivace → `pip install -r requirements.txt` → `jupyter lab` → otevřít `pumping_analysis.ipynb` z kořene projektu.
+
+## Rychlé spuštění (volitelné)
+
+Projekt lze spustit i pomocí skriptu:
+
+bash run_clean_test.sh
+
+Skript automaticky provede všechny potřebné kroky:
+
+- naklonuje repozitář do nové složky
+- vytvoří virtuální prostředí
+- nainstaluje všechny potřebné závislosti (viz requirements.txt)
+- spustí Jupyter Lab v prohlížeči
+
+Instalace závislostí může při prvním spuštění trvat 1–3 minuty.
+
+Po otevření Jupyteru v prohlížeči:
+
+- otevřete soubor pumping_analysis.ipynb
+- spusťte všechny buňky (Run → Run All Cells nebo Shift+Enter)
