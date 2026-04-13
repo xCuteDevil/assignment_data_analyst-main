@@ -8,7 +8,13 @@ FOLDER="test-run"
 echo "========================================"
 echo " STEP 1/5: Cleaning old directory"
 echo "========================================"
-rm -rf $FOLDER
+if [ -d "$FOLDER" ]; then
+    echo "⚠️ Folder exists. Trying to remove..."
+    rm -rf "$FOLDER" 2>/dev/null || {
+        echo "❌ Cannot remove $FOLDER (probably in use). Please close Jupyter and retry."
+        exit 1
+    }
+fi
 
 echo "========================================"
 echo " STEP 2/5: Cloning repository"
