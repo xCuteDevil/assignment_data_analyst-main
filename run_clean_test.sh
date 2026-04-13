@@ -1,27 +1,50 @@
 #!/bin/bash
 
-set -e  # stop při chybě
+set -e
 
 REPO_URL="https://github.com/xCuteDevil/assignment_data_analyst-main.git"
 FOLDER="test-run"
 
-echo "🧹 Mazání staré složky..."
+echo "========================================"
+echo " STEP 1/5: Cleaning old directory"
+echo "========================================"
 rm -rf $FOLDER
 
-echo "Klonování repozitáře..."
+echo "========================================"
+echo " STEP 2/5: Cloning repository"
+echo "========================================"
 git clone $REPO_URL $FOLDER
 
 cd $FOLDER
 
-echo "Vytváření virtuálního prostředí..."
+echo "========================================"
+echo " STEP 3/5: Creating virtual environment"
+echo "========================================"
 python3 -m venv .venv
 
-echo "⚡ Aktivace prostředí..."
-source .venv/bin/activate
+echo "========================================"
+echo " STEP 4/5: Activating environment"
+echo "========================================"
 
-echo "Instalace závislostí..."
-pip install -U pip
-pip install -r requirements.txt
+if [ -f ".venv/bin/activate" ]; then
+    source .venv/bin/activate
+elif [ -f ".venv/Scripts/activate" ]; then
+    source .venv/Scripts/activate
+else
+    echo " Activation script not found"
+    exit 1
+fi
 
-echo "Spouštím Jupyter Lab..."
-python3 -m jupyter lab
+echo "========================================"
+echo " STEP 5/5: Installing dependencies"
+echo "   (this may take 1–3 minutes...)"
+echo "========================================"
+
+python -m pip install -U pip
+python -m pip install -r requirements.txt
+
+echo "========================================"
+echo " Launching Jupyter Lab..."
+echo "========================================"
+
+python -m jupyter lab
